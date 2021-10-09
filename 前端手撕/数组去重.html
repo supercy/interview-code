@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Array.prototype.uniq = function () {
+            // let arr = this;
+            // return arr.reduce((arr, item) => {
+            //     return arr.includes(item) ? arr : [...arr, item]
+            // }, [])
+            // let arr = this;
+            // return arr.filter((item, index, arr) => {
+            //     return arr.indexOf(item, 0) === index
+            // })
+            let arr = this;
+            let map = new Map()
+            let newArr = []
+            arr.forEach(item=>{
+                if (!map.has(item)) {
+                    map.set(item,true);
+                    newArr.push(item)
+                }
+            })
+            return newArr
+        }
+
+        var a = [true, false, null, undefined, NaN, 0, 1, {}, {}, 'a', 'a', NaN];
+        console.log("去重前：", a);
+        console.log("去重后：", a.uniq());
+    </script>
+</body>
+
+</html>

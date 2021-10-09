@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue的生命周期</title>
+  </head>
+  <body>
+    <div id="app"><div>{{message}}</div></div>
+    <button>挂载</button>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      const app = new Vue({
+        template:`<div>{{message}}template优先</div> `,
+        data: {
+          message: "Hello World",
+        },
+
+        beforeCreate() {
+          console.group("beforeCreate");
+
+          console.log(this.$el); //还没有$el这个属性
+          console.log(this.$data); //还没有
+        },
+        created() {
+          console.group("create");
+
+          console.log(this.$el); //还没有$el这个属性
+          console.log(this.$data); //有了
+        },
+        beforeMount() {
+          console.group("beforeMount");
+
+          console.log(this.$el); //没有 
+
+          console.log(this.$data); //有了
+        },
+        mounted() {
+          console.group("Mounted");
+
+          console.log(this.$el); //有了 已经替换
+
+          console.log(this.$data); //有了
+        },
+        updated() {},
+      });
+
+      document.querySelector("button").onclick = function () {
+        app.$mount("#app");
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const quickSort = (arr, start, end) => {
+            debugger
+            if (start > end) {
+                return
+            }
+            let i = start,
+                j = end
+            var base = arr[i];
+            while (i != j) {
+                while (arr[j] > base && i < j) {
+                    j--
+                }
+                while (arr[i] <= base && i < j) {
+                    i++
+                }
+                if (i < j) {
+                    [arr[i], arr[j]] = [arr[j], arr[i]]
+                }
+            }
+
+            [arr[start], arr[i]] = [arr[i], base];
+            quickSort(arr, start, i - 1);
+            quickSort(arr, i + 1, end)
+            return arr
+        }
+
+        let arr = [5, 4, 1, 2, 9, 7, 8, 3, 6];
+        console.log(quickSort(arr, 0, arr.length - 1));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <button id="ajax">test</button>
+    </div>
+    <script>
+        function Ajax(type, url, data, success, failed) {
+            let xhrType = type.toUpperCase();
+            let xhr = new XMLHttpRequest();
+            if (xhrType == "GET") {
+                let param = ""
+                for (const key in data) {
+                    if (Object.hasOwnProperty.call(data, key)) {
+                        param += `${key}=${data[key]}&`
+                    }
+                }
+                param.replace(/&$/, "")
+                xhr.open("GET", url + "?" + param);
+                xhr.send()
+            } else if (xhrType == "POST") {
+                xhr.open("POST", url);
+                xhr.setRequestHeader("content-type", "application/json")
+                xhr.send(data)
+            }
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        success(xhr.responseText)
+                    }
+                    else {
+                        failed(xhr.status)
+                    }
+                }
+            }
+        }
+        var button = document.getElementById("ajax")
+        var data = { name: "cui", age: "26" }
+        button.onclick = function () {
+            debugger
+            Ajax("post", "http://www.baidu.com", data, function () { }, function (res) {
+                alert(res)
+            })
+        }
+    </script>
+</body>
+
+</html>

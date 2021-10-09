@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let line = [
+            [1, 'left', 2],
+            [1, 'right', 3],
+            // [2, 'left', 4],
+            // [2, 'right', 5],
+            // [3, 'right', 6],
+            // [6, 'left', 7],
+            // [6, 'right', 8],
+            // [8, 'left', 9],
+            // [8, 'right', 10]
+        ]
+        let obj = {}
+        for (const item of line) {
+            let [key, side, val] = item;
+            if (obj[key]) {
+                obj[key][side] = val
+            } else {
+                obj[key] = {}
+                obj[key][side] = val
+            }
+        }
+
+        let count = 0;
+
+        for (const key in obj) {
+            if (obj[key].hasOwnProperty("left") && obj[key].hasOwnProperty("right")) {
+                if (!obj[obj[key].left] && !obj[obj[key].right]) {
+                    count++;
+                    console.log(obj[key]);
+                }
+            }
+        }
+        console.log(count);
+
+    </script>
+</body>
+
+</html>

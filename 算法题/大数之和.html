@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const bigAdd = (s, t) => {
+            let maxLength = Math.max(s.length, t.length);
+            s = s.padStart(maxLength, "0");
+            t = t.padStart(maxLength, "0");
+            let up = 0;
+            let res = ""
+            for (let i = maxLength - 1; i >= 0; i--) {
+                let cur = (parseInt(s[i]) + parseInt(t[i]) + up) % 10; //余数
+                up = Math.floor((parseInt(s[i]) + parseInt(t[i]) + up) / 10); //进位
+                res = `${cur}${res}`
+            }
+            if (up) {
+                res = up + res
+            }
+            return res
+        }
+
+        let res = bigAdd("823456", "444444")
+// console.log(res);
+    </script>
+</body>
+
+</html>

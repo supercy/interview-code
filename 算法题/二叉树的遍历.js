@@ -114,6 +114,7 @@ function threeOrders(root) {
             while (length > 0) {
                 let curr = queue.shift();
                 currLevel.push(curr.val)
+                // res.push(curr.val)
                 curr.left && queue.push(curr.left);
                 curr.right && queue.push(curr.right);
                 length--;

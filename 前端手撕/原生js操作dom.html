@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container div {
+            width: 100px;
+            height: 50px;
+            margin-bottom: 50px;
+            border: 3px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div>
+        <button>before insert</button>
+        <button>after insert</button>
+        <button>reset</button>
+    </div>
+    <script>
+        let container = document.getElementById("container");
+        let cur;
+        container.addEventListener("click", e => {
+            Array.from(e.currentTarget.children).forEach(item => {
+                item.style.border = "3px solid gray"
+            })
+            e.target.style.border = "3px solid green"
+            cur = e.target;
+        })
+        let [brfore, after, reset] = document.getElementsByTagName("button");
+        brfore.onclick = () => {
+            if (cur) {
+                let newDiv = document.createElement("div");
+                newDiv.innerHTML = "before"
+                container.insertBefore(newDiv, cur)
+            }
+        }
+        after.onclick = () => {
+            if (cur) {
+                let newDiv = document.createElement("div");
+                newDiv.innerHTML = "next"
+                container.insertBefore(newDiv, cur.nextSibling)
+            }
+        }
+        reset.onclick = () => {
+            cur = null;
+            container.innerHTML = "<div></div><div></div><div></div><div></div><div></div>"
+        }
+    </script>
+</body>
+
+</html>

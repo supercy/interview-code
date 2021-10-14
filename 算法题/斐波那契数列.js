@@ -6,4 +6,4 @@ function fibonacci(n) {
      console.log(arr);
      return arr[n]
   }
-  console.log(fibonacci(10));
+  console.log(fibonacci(11));

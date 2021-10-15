@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const dataInfo = [{
+            id: '100',
+            name: '上海',
+            child: [{
+                id: '101',
+                name: '浦东',
+                child: []
+            }, {
+                id: '102',
+                name: '浦西',
+                child: []
+            }]
+        }, {
+            id: '200',
+            name: '杭州',
+            child: [{
+                id: '201',
+                name: '西湖',
+                child: [{
+                    id: '221',
+                    name: "黄龙时代",
+                    child: []
+                }]
+            }, {
+                id: '202',
+                name: "余杭",
+                child: []
+            }]
+
+        }]
+        const func = (dataInfo, code, path = []) => {
+            for (let i = 0; i < dataInfo.length; i++) {
+                path.push(dataInfo[i].name)
+                if (dataInfo[i].id == code) {
+                    return path;
+                } else if (dataInfo[i].child.length) {
+                    let res = func(dataInfo[i].child, code, path);
+                    if (res.length) {
+                        return res;
+                    }
+                }
+                path.pop()
+            }
+            return []
+        }
+        // write code here
+        console.log(func(dataInfo, "221"))
+    </script>
+</body>
+
+</html>

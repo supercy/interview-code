@@ -8,7 +8,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\算法题\\二叉树路径排列.js"
+            "program": "${workspaceFolder}\\前端手撕\\manbang.js"
         }
     ]
 }
